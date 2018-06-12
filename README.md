@@ -34,12 +34,28 @@ try{
 ```
 就可以成功捕获并处理异常。
 
-# 存在的问题：]
-- [ 无法处理部分异常：]
+也支持类似STL中函数对象，使用自定义的判断函数，如：
+```cpp
+// funciton object
+struct CheckTest
+{
+    bool operator()(const Json::Value& value)
+    {
+        return !value.isNull();
+    }
+};
+
+float asfloat = SafeJsonCpp::GetValue<float, CheckTest>(js_json_path["speed"]);
+std::cout <<　asfloat <<　std::endl;
+```
+
+可通过定义新的JsonOptTrait实现对SafeJson的扩展，具体实现参考JsonOptTrait.h。
+
+# 存在的问题：
+- [ 无法处理部分异常： ]
 ```cpp
    std::string md5 = SafeJsonCpp::GetValue<std::string>(js_json_path["tree"]["walle"]["none"]);
 ```
   因为"walle"这个节点在json中已经是一个字符串，而不是一个Object,所以对其取"none"属性的值会直接触发断言，因为这是在Json::Value operator[] 中触发的，无法在外面提前做判断，所以暂时没有想到解决方法。需要注意是，如果这个json中"walle"不存在，或者是一个普通的Obejct，则不管"none"为何种元素都能被正常处理（触发异常或正常返回）。
-  - [功能不够强大：]
+- [ 功能不够强大：]
   现在因为业务需要，只实现了GetValue和SetValue这两个接口，后续如果有其他需求会添加上去。
-  
