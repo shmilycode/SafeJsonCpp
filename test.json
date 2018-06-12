@@ -1,0 +1,18 @@
+{
+    "downloadUrl": "www.walle.com",
+    "fileMd5": "12345",
+    "size": -5,
+    "usize": 34356,
+    "enable": true,
+    "speed": 23.6464326,
+    "other_speed": 32.322,
+    "tree": {
+        "child1": "1",
+        "child2": "2",
+        "child3": "3",
+        "child4": {
+            "grandchild1": "4",
+            "grandchild2": 5
+        }
+    }
+}
