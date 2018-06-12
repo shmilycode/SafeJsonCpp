@@ -7,7 +7,7 @@
 这个项目只有两个头文件，JsonOptTrait.h和SafeJson.h。
 使用时将这两个放到头文件目录下，然后头文件包含
 
-<code> #include "JsonOptTrait.h" </code>
+<code> #include "SafeJson.h" </code>
 
 头文件中主要实现了两个函数, SetValue和GetValue，
 
